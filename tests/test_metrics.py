@@ -241,3 +241,35 @@ def test_trends_csv_cod_decline_positive():
     from utils.metrics import interest_decline_pct
     decline = interest_decline_pct(df, "Call of Duty")
     assert decline > 0.0
+
+
+# ── steam_players.csv integration (Player Counts assertions) ──────────────────
+
+def test_steam_csv_mw2_has_higher_peak_than_mw3():
+    """MW2 (2022) should have a higher peak player count than MW3 (2023)."""
+    from pathlib import Path
+    import pandas as pd
+    csv_path = Path(__file__).parent.parent / "data" / "steam_players.csv"
+    if not csv_path.exists():
+        pytest.skip("data/steam_players.csv not yet generated")
+    df = pd.read_csv(csv_path)
+    from utils.metrics import player_peak_by_title
+    peaks = player_peak_by_title(df)
+    mw2_peak = peaks[peaks["title"] == "Call of Duty: Modern Warfare II"]["peak_players"].values
+    mw3_peak = peaks[peaks["title"] == "Call of Duty: Modern Warfare III"]["peak_players"].values
+    assert len(mw2_peak) == 1 and len(mw3_peak) == 1
+    assert mw2_peak[0] > mw3_peak[0], "MW2 should have higher peak than MW3"
+
+
+def test_yoy_player_change_returns_correct_years():
+    """yoy_player_change output should contain both 2022 and 2023."""
+    from pathlib import Path
+    import pandas as pd
+    csv_path = Path(__file__).parent.parent / "data" / "steam_players.csv"
+    if not csv_path.exists():
+        pytest.skip("data/steam_players.csv not yet generated")
+    df = pd.read_csv(csv_path)
+    from utils.metrics import yoy_player_change
+    yoy = yoy_player_change(df)
+    assert 2022 in yoy["year"].values
+    assert 2023 in yoy["year"].values
