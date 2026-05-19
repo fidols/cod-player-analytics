@@ -180,3 +180,36 @@ def test_games_csv_schema():
     expected_cols = {"title", "year", "developer", "era", "metacritic_score", "user_score", "steam_app_id"}
     assert expected_cols.issubset(df.columns)
     assert len(df) == 22
+
+
+# ── era_summary avg by era (Quality Arc assertions) ───────────────────────────
+
+def test_era_summary_live_service_lower_than_classic():
+    """Classic era should have a higher avg Metacritic score than Live Service."""
+    from pathlib import Path
+    import pandas as pd
+    csv_path = Path(__file__).parent.parent / "data" / "games.csv"
+    if not csv_path.exists():
+        pytest.skip("data/games.csv not yet generated")
+    df = pd.read_csv(csv_path)
+    from utils.metrics import era_summary
+    summary = era_summary(df)
+    classic_avg = summary[summary["era"] == "Classic"]["avg_metacritic"].values[0]
+    live_avg = summary[summary["era"] == "Live Service"]["avg_metacritic"].values[0]
+    assert classic_avg > live_avg
+
+
+def test_score_gap_mw3_2023_is_negative():
+    """MW3 (2023) user score gap should be large and positive (critics >> players)."""
+    from pathlib import Path
+    import pandas as pd
+    csv_path = Path(__file__).parent.parent / "data" / "games.csv"
+    if not csv_path.exists():
+        pytest.skip("data/games.csv not yet generated")
+    df = pd.read_csv(csv_path)
+    from utils.metrics import score_gap
+    gaps = score_gap(df)
+    mw3 = gaps[gaps["title"] == "Call of Duty: Modern Warfare III"]
+    assert len(mw3) == 1
+    # 56 - (3.7 * 10) = 56 - 37 = 19; critics liked it more than players
+    assert mw3["gap"].values[0] > 0
