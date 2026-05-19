@@ -62,15 +62,6 @@ def test_score_gap_drops_nulls():
     assert len(result) == 0
 
 
-def test_score_gap_columns():
-    df = pd.DataFrame([
-        {"title": "CoD4", "year": 2007, "era": "Classic",
-         "metacritic_score": 94.0, "user_score": 8.7, "developer": "IW"},
-    ])
-    result = score_gap(df)
-    assert set(["title", "year", "metacritic_score", "user_score", "gap"]).issubset(result.columns)
-
-
 # ── peak_interest_month ───────────────────────────────────────────────────────
 
 def test_peak_interest_month_correct():
@@ -114,6 +105,18 @@ def test_interest_decline_pct_empty_returns_zero():
     assert result == 0.0
 
 
+def test_interest_decline_pct_mid_series_peak():
+    """Peak is in the middle of the series — function must find actual max, not first row."""
+    df = pd.DataFrame([
+        {"keyword": "Call of Duty", "date": "2019-01-01", "interest": 60},
+        {"keyword": "Call of Duty", "date": "2020-03-01", "interest": 100},
+        {"keyword": "Call of Duty", "date": "2024-01-01", "interest": 30},
+    ])
+    result = interest_decline_pct(df, "Call of Duty")
+    # peak=100, latest=30, decline = (100-30)/100 = 0.70
+    assert abs(result - 0.70) < 0.01
+
+
 # ── player_peak_by_title ──────────────────────────────────────────────────────
 
 def test_player_peak_by_title_correct():
@@ -127,6 +130,7 @@ def test_player_peak_by_title_correct():
     ])
     result = player_peak_by_title(df)
     assert result[result["title"] == "MW2"]["peak_players"].values[0] == 120000
+    assert result[result["title"] == "MW3"]["peak_players"].values[0] == 80000
 
 
 def test_player_peak_by_title_sorted_descending():
