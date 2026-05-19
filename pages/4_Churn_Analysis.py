@@ -173,7 +173,7 @@ fig_overlay.update_layout(
 )
 fig_overlay.update_xaxes(tickfont=dict(color="#1A1A1A"), title_font=dict(color="#1A1A1A"))
 fig_overlay.update_yaxes(tickfont=dict(color="#1A1A1A"), title_font=dict(color="#1A1A1A"))
-st.plotly_chart(fig_overlay, use_container_width=True)
+st.plotly_chart(fig_overlay, width="stretch")
 
 st.divider()
 
@@ -219,7 +219,7 @@ else:
     )
     fig_scatter.update_xaxes(tickfont=dict(color="#1A1A1A"), title_font=dict(color="#1A1A1A"))
     fig_scatter.update_yaxes(tickfont=dict(color="#1A1A1A"), title_font=dict(color="#1A1A1A"))
-    st.plotly_chart(fig_scatter, use_container_width=True)
+    st.plotly_chart(fig_scatter, width="stretch")
 
     st.caption(
         f"Pearson r = {corr_str}. "

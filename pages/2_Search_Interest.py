@@ -79,7 +79,7 @@ fig_area.update_layout(
 )
 fig_area.update_xaxes(tickfont=dict(color="#1A1A1A"), title_font=dict(color="#1A1A1A"))
 fig_area.update_yaxes(tickfont=dict(color="#1A1A1A"), title_font=dict(color="#1A1A1A"))
-st.plotly_chart(fig_area, use_container_width=True)
+st.plotly_chart(fig_area, width="stretch")
 
 st.divider()
 
@@ -113,7 +113,7 @@ fig_compare.update_layout(
 )
 fig_compare.update_xaxes(tickfont=dict(color="#1A1A1A"), title_font=dict(color="#1A1A1A"))
 fig_compare.update_yaxes(tickfont=dict(color="#1A1A1A"), title_font=dict(color="#1A1A1A"))
-st.plotly_chart(fig_compare, use_container_width=True)
+st.plotly_chart(fig_compare, width="stretch")
 
 st.caption(
     "Source: Google Trends via pytrends. Data fetched at build time. "

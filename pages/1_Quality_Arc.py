@@ -90,7 +90,7 @@ fig_line.update_layout(
 )
 fig_line.update_xaxes(tickfont=dict(color="#1A1A1A"), title_font=dict(color="#1A1A1A"))
 fig_line.update_yaxes(tickfont=dict(color="#1A1A1A"), title_font=dict(color="#1A1A1A"))
-st.plotly_chart(fig_line, use_container_width=True)
+st.plotly_chart(fig_line, width="stretch")
 
 st.divider()
 
@@ -136,7 +136,7 @@ fig_bar.update_layout(
 )
 fig_bar.update_xaxes(tickfont=dict(color="#1A1A1A"), title_font=dict(color="#1A1A1A"))
 fig_bar.update_yaxes(tickfont=dict(color="#1A1A1A"), title_font=dict(color="#1A1A1A"))
-st.plotly_chart(fig_bar, use_container_width=True)
+st.plotly_chart(fig_bar, width="stretch")
 
 st.divider()
 
@@ -169,6 +169,6 @@ fig_era.update_layout(
 )
 fig_era.update_xaxes(tickfont=dict(color="#1A1A1A"), title_font=dict(color="#1A1A1A"))
 fig_era.update_yaxes(tickfont=dict(color="#1A1A1A"), title_font=dict(color="#1A1A1A"))
-st.plotly_chart(fig_era, use_container_width=True)
+st.plotly_chart(fig_era, width="stretch")
 
 st.caption("Source: Metacritic.com — PC scores where available, console otherwise.")

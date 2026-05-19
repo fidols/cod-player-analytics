@@ -78,7 +78,7 @@ fig_line.update_layout(
 )
 fig_line.update_xaxes(tickfont=dict(color="#1A1A1A"), title_font=dict(color="#1A1A1A"))
 fig_line.update_yaxes(tickfont=dict(color="#1A1A1A"), title_font=dict(color="#1A1A1A"))
-st.plotly_chart(fig_line, use_container_width=True)
+st.plotly_chart(fig_line, width="stretch")
 
 st.divider()
 
@@ -105,7 +105,7 @@ fig_peak.update_layout(
 )
 fig_peak.update_xaxes(tickfont=dict(color="#1A1A1A"), title_font=dict(color="#1A1A1A"))
 fig_peak.update_yaxes(tickfont=dict(color="#1A1A1A"), title_font=dict(color="#1A1A1A"))
-st.plotly_chart(fig_peak, use_container_width=True)
+st.plotly_chart(fig_peak, width="stretch")
 
 st.divider()
 
@@ -134,7 +134,7 @@ fig_yoy.update_layout(
 )
 fig_yoy.update_xaxes(tickfont=dict(color="#1A1A1A"), title_font=dict(color="#1A1A1A"))
 fig_yoy.update_yaxes(tickfont=dict(color="#1A1A1A"), title_font=dict(color="#1A1A1A"))
-st.plotly_chart(fig_yoy, use_container_width=True)
+st.plotly_chart(fig_yoy, width="stretch")
 
 st.caption(
     "Source: SteamCharts.com — monthly average and peak concurrent player data. "

@@ -103,7 +103,7 @@ fig.update_layout(
 )
 fig.update_xaxes(tickfont=dict(color="#1A1A1A"), title_font=dict(color="#1A1A1A"))
 fig.update_yaxes(tickfont=dict(color="#1A1A1A"), title_font=dict(color="#1A1A1A"))
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, width="stretch")
 
 st.caption(
     "Sources: Metacritic.com (scores verified manually) · "
