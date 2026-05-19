@@ -62,7 +62,7 @@ fig_area = px.area(
 
 for event_date, label, color in _EVENTS:
     fig_area.add_vline(
-        x=event_date,
+        x=pd.Timestamp(event_date).value // 10**6,
         line_dash="dot",
         line_color=color,
         annotation_text=label,
