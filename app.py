@@ -87,7 +87,7 @@ fig.add_vline(
     x=2025,
     line_dash="dot",
     line_color="#E31837",
-    annotation_text="← I quit here",
+    annotation_text="← I quit here<br>BO7",
     annotation_position="top right",
     annotation_font_color="#E31837",
 )
