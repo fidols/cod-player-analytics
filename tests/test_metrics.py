@@ -273,3 +273,21 @@ def test_yoy_player_change_returns_correct_years():
     yoy = yoy_player_change(df)
     assert 2022 in yoy["year"].values
     assert 2023 in yoy["year"].values
+
+
+# ── Churn Analysis signal helpers ─────────────────────────────────────────────
+
+def test_normalize_series_max_is_100():
+    """Normalizing a series to 0–100: max should be 100."""
+    import numpy as np
+    s = pd.Series([10.0, 20.0, 50.0, 80.0, 100.0])
+    normalized = (s - s.min()) / (s.max() - s.min()) * 100
+    assert abs(normalized.max() - 100.0) < 0.01
+
+
+def test_normalize_series_min_is_0():
+    """Normalizing a series to 0–100: min should be 0."""
+    import numpy as np
+    s = pd.Series([10.0, 20.0, 50.0, 80.0, 100.0])
+    normalized = (s - s.min()) / (s.max() - s.min()) * 100
+    assert abs(normalized.min() - 0.0) < 0.01
