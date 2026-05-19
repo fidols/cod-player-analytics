@@ -73,6 +73,7 @@ fig_line.update_layout(
     plot_bgcolor="#FFFFFF",
     paper_bgcolor="#FFFFFF",
     font_color="#1A1A1A",
+    legend=dict(font=dict(color="#1A1A1A")),
     yaxis_tickformat=",",
     margin=dict(t=40, b=40),
 )

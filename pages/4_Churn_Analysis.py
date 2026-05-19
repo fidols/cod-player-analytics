@@ -168,6 +168,7 @@ fig_overlay.update_layout(
     plot_bgcolor="#FFFFFF",
     paper_bgcolor="#FFFFFF",
     font_color="#1A1A1A",
+    legend=dict(font=dict(color="#1A1A1A")),
     yaxis_range=[0, 110],
     margin=dict(t=60, b=40),
 )

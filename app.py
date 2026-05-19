@@ -97,6 +97,7 @@ fig.update_layout(
     plot_bgcolor="#FFFFFF",
     paper_bgcolor="#FFFFFF",
     font_color="#1A1A1A",
+    legend=dict(font=dict(color="#1A1A1A")),
     margin=dict(t=40, b=40),
     yaxis_range=[40, 100],
 )
