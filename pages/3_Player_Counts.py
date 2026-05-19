@@ -85,7 +85,11 @@ st.divider()
 
 # ── Chart 2: Peak concurrent players bar ──────────────────────────────────────
 st.subheader("Peak Concurrent Players by Title")
-st.caption("All-time peak concurrent players recorded on Steam for each title.")
+st.caption(
+    "All-time peak concurrent players recorded on Steam for each title. "
+    "MW3 (2023) shows near-zero because Activision launched it on Battle.net — "
+    "its Steam page exists but was not the primary PC distribution platform."
+)
 
 fig_peak = px.bar(
     peaks,
