@@ -48,6 +48,20 @@ def fetch_title(app_id: int, title: str, retries: int = 3) -> pd.DataFrame:
                 print(f"  Skipped {skipped} zero/null rows")
             df = pd.DataFrame(rows)
             if not df.empty:
+                # API mixes monthly history with hourly near-realtime data.
+                # Bucket everything to YYYY-MM-01 and take mean/max per month.
+                df["date"] = (
+                    pd.to_datetime(df["date"])
+                    .dt.to_period("M")
+                    .dt.to_timestamp()
+                    .dt.strftime("%Y-%m-%d")
+                )
+                df = (
+                    df.groupby(["date", "app_id", "title"], as_index=False)
+                    .agg({"avg_players": "mean", "peak_players": "max"})
+                )
+                df["avg_players"] = df["avg_players"].round().astype(int)
+                df["peak_players"] = df["peak_players"].astype(int)
                 print(f"  {len(df)} months of data: {df['date'].min()} – {df['date'].max()}")
             else:
                 print(f"  No data returned for AppID {app_id}")
