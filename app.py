@@ -81,7 +81,6 @@ fig = px.scatter(
     hover_data={"title": True, "year": True, "developer": True,
                 "metacritic_score": True, "era": False},
     labels={"year": "Release Year", "metacritic_score": "Metacritic Score", "era": "Era"},
-    size_max=12,
 )
 
 # Personal annotation: quit point
