@@ -213,3 +213,31 @@ def test_score_gap_mw3_2023_is_negative():
     assert len(mw3) == 1
     # 56 - (3.7 * 10) = 56 - 37 = 19; critics liked it more than players
     assert mw3["gap"].values[0] > 0
+
+
+# ── trends.csv integration (Search Interest assertions) ───────────────────────
+
+def test_trends_csv_warzone_peak_in_2020():
+    """Warzone's peak interest should be in 2020 (COVID/launch spike)."""
+    from pathlib import Path
+    import pandas as pd
+    csv_path = Path(__file__).parent.parent / "data" / "trends.csv"
+    if not csv_path.exists():
+        pytest.skip("data/trends.csv not yet generated")
+    df = pd.read_csv(csv_path)
+    from utils.metrics import peak_interest_month
+    peak = peak_interest_month(df, "Warzone")
+    assert peak.startswith("2020"), f"Expected 2020 peak, got {peak}"
+
+
+def test_trends_csv_cod_decline_positive():
+    """Call of Duty search interest should show a positive decline from peak."""
+    from pathlib import Path
+    import pandas as pd
+    csv_path = Path(__file__).parent.parent / "data" / "trends.csv"
+    if not csv_path.exists():
+        pytest.skip("data/trends.csv not yet generated")
+    df = pd.read_csv(csv_path)
+    from utils.metrics import interest_decline_pct
+    decline = interest_decline_pct(df, "Call of Duty")
+    assert decline > 0.0
