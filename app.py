@@ -107,5 +107,5 @@ st.plotly_chart(fig, width="stretch")
 st.caption(
     "Sources: Metacritic.com (scores verified manually) · "
     "Google Trends (pytrends) · SteamCharts.com. "
-    "All data fetched at build time. BO7 (2025) excluded from score chart — no Metacritic score yet."
+    "All data fetched at build time."
 )
