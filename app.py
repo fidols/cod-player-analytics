@@ -21,8 +21,7 @@ st.caption("Portfolio project for Activision Data Analyst, Analytics Insights �
 
 st.markdown(
     """
-    > *"I started playing Call of Duty at age 8 with World at War. I quit around Black Ops 7.
-    > This dashboard is my attempt to understand why — through data."*
+    I started Playing Call of Duty when I was 8, with World at War. I quit when Black Ops 7 came out and instead bought Battlefield 6. From PS3, to now my PC. This dashboard is my attempt to understand why, through data.
 
     **What this is:** A BI dashboard tracing the rise and decline of the Call of Duty franchise
     through public data — Metacritic scores, Google Trends interest, and Steam concurrent player counts.
