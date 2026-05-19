@@ -165,3 +165,18 @@ def test_yoy_player_change_first_year_is_nan():
     ])
     result = yoy_player_change(df)
     assert math.isnan(result.iloc[0]["yoy_pct"])
+
+
+# ── games.csv schema contract ─────────────────────────────────────────────────
+
+def test_games_csv_schema():
+    """Verify games.csv has the expected columns and row count."""
+    from pathlib import Path
+    import pandas as pd
+    csv_path = Path(__file__).parent.parent / "data" / "games.csv"
+    if not csv_path.exists():
+        pytest.skip("data/games.csv not yet generated — run data/fetch/fetch_games.py first")
+    df = pd.read_csv(csv_path)
+    expected_cols = {"title", "year", "developer", "era", "metacritic_score", "user_score", "steam_app_id"}
+    assert expected_cols.issubset(df.columns)
+    assert len(df) == 22
